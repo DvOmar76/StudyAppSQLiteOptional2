@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
-            android:hint=" enter id and press on update to get data"
+            android:hint=" enter id "
             android:inputType="textPersonName" />
 
 
