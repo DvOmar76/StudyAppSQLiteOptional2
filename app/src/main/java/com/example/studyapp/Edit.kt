@@ -54,26 +54,35 @@ class Edit : AppCompatActivity() {
             }
 
         }
-        btnDelete.setOnClickListener {
-            try
+         btnDelete.setOnClickListener {
+            checkButton()
+            if (table.isNotEmpty())
             {
-                val id = edIDDelete.text.toString().toInt()
-                val status = dbHelper.delete("kotlin", id)
-                Log.d("asdfasd", status.toString())
-                if (status == 1)
+                try
                 {
-                    Toast.makeText(applicationContext, "item is deleted", Toast.LENGTH_SHORT).show()
-                    edIDDelete.text.clear()
+                    val id = edIDDelete.text.toString().toInt()
+                    val status = dbHelper.delete("$table", id)
+                    if (status == 1)
+                    {
+                        Toast.makeText(applicationContext, "item is deleted", Toast.LENGTH_SHORT)
+                            .show()
+                        edIDDelete.text.clear()
+                    }
+                    else
+                    {
+                        Toast.makeText(applicationContext, "id not found", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
-                else
+                catch (e: Exception)
                 {
-                    Toast.makeText(applicationContext, "id not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "please enter number in id", Toast.LENGTH_SHORT).show()
                 }
             }
-            catch (e: Exception)
+            else
             {
-                Toast.makeText(applicationContext, "please enter number in id", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(applicationContext, "please select table", Toast.LENGTH_SHORT).show()
+
             }
         }
         btnUpdate.setOnClickListener {
